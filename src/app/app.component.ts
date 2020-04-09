@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { YoutubeSearchService } from './services/youtube-search-service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SegFyYoutube';
+
+  constructor(private youtubeService: YoutubeSearchService) { }
+
 }

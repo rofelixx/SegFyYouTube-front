@@ -1,0 +1,50 @@
+  <div class="container text-center youtube-spacing">
+    <h1>{{title}}</h1>
+  </div>
+
+  <div class="container youtube-spacing">
+    <mat-form-field class="input-width">
+      <mat-label>Nome ou descrição do vídeo</mat-label>
+      <input matInput placeholder="Ex. Carros" [(ngModel)]="searchText" required>
+      <mat-icon *ngIf="!searchText" matSuffix>search</mat-icon>
+      <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+        <mat-icon>close</mat-icon>
+      </button>   
+    </mat-form-field>
+
+    <div class="youtube-spacing">
+      <label class="youtube-spacing">Pesquisar por: </label>
+      <mat-radio-group
+      class="youtube-spacing youtube-radio-group"
+      [(ngModel)]="typeSearch">
+        <mat-radio-button class="example-radio-button" [value]="1">Vídeo</mat-radio-button>
+        <mat-radio-button class="example-radio-button" [value]="2">Canal</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+
+    <button mat-raised-button class="youtube-spacing" (click)="searchVideo()" [disabled]="!searchText">Pesquisar</button>
+  </div>
+
+  <div class="basic-container">
+		<mat-grid-list cols="4" gutterSize="30px">
+      <div *ngFor="let video of videos | filter: filterSearch">
+			<mat-grid-tile>
+          <mat-card class="example-card z-depth-3" style="text-align: center;">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>{{video.title}}</mat-card-title>
+            </mat-card-header>
+            <youtube-player class="" [videoId]=video.id [height]="260" [width]="380"></youtube-player>
+            <mat-card-content fxLayout='row' fxLayoutWrap fxLayoutGap="20px">
+              <p>
+                {{video.description}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+      </mat-grid-tile>
+    </div>
+		</mat-grid-list>
+</div>
+
+
