@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class YoutubeSearchService {
     
-    private YOUTUBE_API_SERVER = 'http://localhost:5001/api/youtube/';
+    private YOUTUBE_API_SERVER = 'http://segfyyoutubewebapi-dev.us-west-2.elasticbeanstalk.com/api/youtube/';
 
     constructor(private httpClient: HttpClient) { }
 

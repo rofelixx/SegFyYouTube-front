@@ -23,7 +23,9 @@
     </div>
 
 
-    <button mat-raised-button class="youtube-spacing" (click)="searchVideo()" [disabled]="!searchText">Pesquisar</button>
+    <button mat-raised-button class="youtube-spacing" (click)="searchVideo()" [disabled]="!searchText || (isLoading$ | async)">
+      <mat-icon *ngIf="isLoading$ | async"><mat-spinner diameter="20">
+      </mat-spinner></mat-icon>Pesquisar</button>
   </div>
 
   <div class="basic-container">
@@ -46,5 +48,4 @@
     </div>
 		</mat-grid-list>
 </div>
-
 
