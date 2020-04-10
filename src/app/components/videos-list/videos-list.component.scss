@@ -78,3 +78,7 @@
   .example-full-width{
     margin-left: 16px;
   }
+
+  .mat-spinner::ng-deep circle {
+    stroke:#4286f4;
+  }

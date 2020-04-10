@@ -16,6 +16,6 @@ export class YoutubeSearchService {
         .set('searchFilter', searchFilter)
         .set('searchType', typeSearch);
 
-        return this.httpClient.get(this.YOUTUBE_API_SERVER, {params: params})
+        return this.httpClient.get<any[]>(this.YOUTUBE_API_SERVER, {params: params})
     }
 }

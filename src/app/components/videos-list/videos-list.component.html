@@ -6,15 +6,15 @@
     <mat-form-field class="input-width">
       <mat-label>Nome ou descrição do vídeo</mat-label>
       <input matInput placeholder="Ex. Carros" [(ngModel)]="searchText" required>
-      <mat-icon *ngIf="!searchText" matSuffix>search</mat-icon>
-      <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+      <mat-icon *ngIf="!videos && !searchText" matSuffix>search</mat-icon>
+      <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="clear()" [disabled] = "(isLoading$ | async)">
         <mat-icon>close</mat-icon>
       </button>   
     </mat-form-field>
 
     <div class="youtube-spacing">
       <label class="youtube-spacing">Pesquisar por: </label>
-      <mat-radio-group
+      <mat-radio-group [disabled] = "videos && videos.length > 0 || (isLoading$ | async)"
       class="youtube-spacing youtube-radio-group"
       [(ngModel)]="typeSearch">
         <mat-radio-button class="example-radio-button" [value]="1">Vídeo</mat-radio-button>
@@ -24,7 +24,7 @@
 
 
     <button mat-raised-button class="youtube-spacing" (click)="searchVideo()" [disabled]="!searchText || (isLoading$ | async)">
-      <mat-icon *ngIf="isLoading$ | async"><mat-spinner diameter="20">
+      <mat-icon *ngIf="isLoading$ | async"><mat-spinner diameter="20" class="mat-spinner-color">
       </mat-spinner></mat-icon>Pesquisar</button>
   </div>
 
@@ -37,7 +37,7 @@
               <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>{{video.title}}</mat-card-title>
             </mat-card-header>
-            <youtube-player class="" [videoId]=video.id [height]="260" [width]="380"></youtube-player>
+            <youtube-player *ngIf="typeSearch == 1" class="" [videoId]=video.id [height]="260" [width]="380"></youtube-player>
             <mat-card-content fxLayout='row' fxLayoutWrap fxLayoutGap="20px">
               <p>
                 {{video.description}}
